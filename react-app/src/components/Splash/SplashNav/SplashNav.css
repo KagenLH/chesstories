@@ -1,0 +1,28 @@
+.splash-nav {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+}
+
+.splash-nav__auth {
+    display: flex;
+    padding-right: 25px;
+}
+
+.splash-nav__auth-button {
+    background-color: transparent;
+    border: none;
+    margin: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.splash-nav__auth-button:hover {
+    color: grey;
+}
