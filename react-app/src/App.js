@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import SplashNav from './components/Splash/SplashNav';
 import SplashPage from './components/Splash/SplashPage';
+import AuthModal from './components/Auth/AuthModal/AuthModal';
 
 import { authenticate } from './store/session';
 
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <AuthModal/>
       <SplashNav/>
       <Switch>
         <Route path='/' exact={true} >
