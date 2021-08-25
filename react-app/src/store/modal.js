@@ -1,5 +1,7 @@
 const SHOW_MODAL = 'modal/SHOW_MODAL';
 const HIDE_MODAL = 'modal/HIDE_MODAL';
+const SHOW_LOADER = 'modal/SHOW_LOADER';
+const HIDE_LOADER = 'modal/HIDE_LOADER';
 const SET_PHASE_ENTRY = 'modal/SET_PHASE_ENTRY';
 const SET_PHASE_SIGNUP = 'modal/SET_PHASE_SIGNUP';
 const SET_PHASE_LOGIN = 'modal/SET_PHASE_LOGIN';
@@ -13,6 +15,18 @@ export const showModal = () => {
 export const hideModal = () => {
     return {
         type: HIDE_MODAL,
+    };
+};
+
+export const showAuthLoader = () => {
+    return {
+        type: SHOW_LOADER,
+    };
+};
+
+export const hideAuthLoader = () => {
+    return {
+        type: HIDE_LOADER,
     };
 };
 
@@ -49,7 +63,8 @@ export const verifyCredential = (credential) => async (dispatch) => {
             return data.errors;
         }
 
-        dispatch(setPhaseLogin(credential));
+        dispatch(setPhaseLogin(data.username));
+        dispatch(hideAuthLoader());
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -64,6 +79,7 @@ const initialState = {
     show: false,
     phase: 'entry',
     credential: null,
+    loader: false,
 };
 
 const modalReducer = (state=initialState, action) => {
@@ -78,6 +94,10 @@ const modalReducer = (state=initialState, action) => {
             return { ...state, phase: 'signup' };
         case SET_PHASE_LOGIN:
             return { ...state, phase: 'login', credential: action.payload };
+        case SHOW_LOADER:
+            return { ...state, loader: true };
+        case HIDE_LOADER:
+            return { ...state, loader: false };
         default:
             return state;
     }

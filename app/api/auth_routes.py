@@ -27,6 +27,16 @@ def authenticate():
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
 
+@auth_routes.route('/credential', methods=['POST'])
+def verify():
+    """
+    Checks if a user with the given e-mail or username exists,
+    and if so sends back the associated email AND username.
+    """
+    data = request.get_json()
+    user = User.query.filter((User.email == data) | (User.username == data)).first()
+    print(user)
+    return user.to_dict()
 
 @auth_routes.route('/login', methods=['POST'])
 def login():

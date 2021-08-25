@@ -1,0 +1,64 @@
+.auth-loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #666666;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.auth-loader-display {
+    position: absolute;
+    left: 47%;
+    top: 37%;
+    transform: translate(-50%, -50%);
+}
+
+.loader-piece {
+    position: absolute;
+    font-size: 60px;
+}
+
+.loader-knight {
+    opacity: 0;
+    font-size: 60px;
+    animation: cycle-pieces 3.5s infinite;
+    animation-delay: 1.5s;
+}
+
+.loader-pawn {
+    opacity: 0;
+    font-size: 60px;
+    animation-delay: 1s;
+}
+
+.loader-rook {
+    opacity: 0;
+    font-size: 60px;
+    animation: cycle-pieces 3.5s infinite;
+    animation-delay: 0.5s;
+}
+
+.loader-king {
+    opacity: 0;
+    font-size: 60px;
+    animation: cycle-pieces 3.5s infinite;
+    animation-delay: 3s;
+}
+
+@keyframes cycle-pieces {
+    0%, 100% {
+        transform: translate(100px, -25px) rotate(-45deg);
+        opacity: 0;
+    }
+
+    25% {
+        transform: translate(0, 25px) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(-100px, 25px) rotate(-45deg);
+        opacity: 0;
+    }
+}

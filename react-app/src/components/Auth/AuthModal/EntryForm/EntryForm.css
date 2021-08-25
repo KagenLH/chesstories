@@ -1,0 +1,108 @@
+.entry-form__container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.entry-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+}
+
+.entry-form__credential {
+    position: relative;
+    width: 100%;
+}
+
+.entry-form__credential-label {
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.entry-form__credential-input-wrapper {
+    margin-top: 10px;
+}
+
+#entry-form__credential-input {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.entry-form__header {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.entry-form__submit {
+    background-color: #262626;
+    border: none;
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.entry-form__subtext {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.entry-form__new-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.entry-form__new-button:hover {
+    color: white;
+}
+
+.entry-form__or-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.entry-form__or-button:hover {
+    color: white;
+}
+
+.entry-form__or-text {
+    margin-top: 5px;
+}
+
+.entry-form__not-you-text {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.entry-form__not-you-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.entry-form__not-you-button:hover {
+    color: white;
+}
