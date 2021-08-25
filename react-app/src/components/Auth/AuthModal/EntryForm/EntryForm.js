@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { setPhaseSignup, verifyCredential, hideModal } from '../../../../store/modal';
+import { setPhaseSignup, verifyCredential, hideModal, hideAuthLoader } from '../../../../store/modal';
 import { login } from '../../../../store/session';
 
 import './EntryForm.css';
@@ -22,6 +22,7 @@ const EntryForm = () => {
         const errors = await dispatch(verifyCredential(credential));
         if(errors) {
             setValidationErrors(errors);
+            dispatch(hideAuthLoader());
         }
     };
 
