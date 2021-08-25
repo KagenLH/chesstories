@@ -35,8 +35,10 @@ def verify():
     """
     data = request.get_json()
     user = User.query.filter((User.email == data) | (User.username == data)).first()
-    print(user)
-    return user.to_dict()
+    if user:
+        return user.to_dict()
+    else:
+        return {'errors': ['A user with that e-mail or username does not exist.']}, 400
 
 @auth_routes.route('/login', methods=['POST'])
 def login():
@@ -49,7 +51,8 @@ def login():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
+        print(form.data['username'])
+        user = User.query.filter(User.username == form.data['username']).first()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

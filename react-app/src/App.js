@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import LoginForm from './components/Auth/LoginForm';
-import SignUpForm from './components/Auth/SignUpForm';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import SplashNav from './components/Splash/SplashNav';
+import NavBar from './components/NavBar';
 import SplashPage from './components/Splash/SplashPage';
 import AuthModal from './components/Auth/AuthModal/AuthModal';
 
@@ -16,6 +13,8 @@ import { authenticate } from './store/session';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const user = useSelector(state => state.session.user);
 
   useEffect(() => {
     (async() => {
@@ -32,10 +31,14 @@ function App() {
     <BrowserRouter>
       <AuthModal/>
       <SplashNav/>
+      <NavBar/>
       <Switch>
         <Route path='/' exact={true} >
           <SplashPage/>
         </Route>
+        <ProtectedRoute path="/collections" exact={true}>
+          <h1>Hello, {user?.username}</h1>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

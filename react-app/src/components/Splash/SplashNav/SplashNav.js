@@ -1,12 +1,18 @@
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { setPhaseEntry, setPhaseSignup, showModal } from '../../../store/modal';
+import { setPhaseEntry, setPhaseLogin, setPhaseSignup, showModal } from '../../../store/modal';
 
 import './SplashNav.css';
 
 const SplashNav = () => {
+    const credential = useSelector(state => state.modal.credential);
+    const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
+    if(user) {
+        return null;
+    }
+    
     return (
         <div className="splash-nav">
             <div className="splash-nav__auth">
@@ -14,7 +20,11 @@ const SplashNav = () => {
                     <button
                         className="splash-nav__auth-button"
                         onClick={() => {
-                            dispatch(setPhaseEntry());
+                            if(credential) {
+                                dispatch(setPhaseLogin(credential));
+                            } else {
+                                dispatch(setPhaseEntry());
+                            }
                             dispatch(showModal());
                         }}
                     >

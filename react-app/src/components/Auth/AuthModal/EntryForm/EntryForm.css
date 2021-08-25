@@ -106,3 +106,13 @@
 .entry-form__not-you-button:hover {
     color: white;
 }
+
+.auth-validation-errors {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    list-style: none;
+}
+
+.auth-validation-errors .auth-validation-error {
+    color: rgb(255, 136, 136);
+}

@@ -42,7 +42,7 @@ export const setPhaseSignup = () => {
     };
 };
 
-const setPhaseLogin = (credential) => {
+export const setPhaseLogin = (credential) => {
     return {
         type: SET_PHASE_LOGIN,
         payload: credential,
@@ -50,6 +50,7 @@ const setPhaseLogin = (credential) => {
 };
 
 export const verifyCredential = (credential) => async (dispatch) => {
+    dispatch(showAuthLoader());
     const res = await fetch('/api/auth/credential', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { setPhaseSignup, setPhaseLogin, verifyCredential, showAuthLoader, hideAuthLoader } from '../../../../store/modal';
+import { setPhaseSignup, verifyCredential, hideModal } from '../../../../store/modal';
+import { login } from '../../../../store/session';
 
 import './EntryForm.css';
 
@@ -35,10 +36,17 @@ const EntryForm = () => {
             >
                 <div className="entry-form__credential">
                     <label className="entry-form__credential-label">E-mail or Username</label>
+                    {validationErrors.length > 0 && 
+                    <ul className="auth-validation-errors">
+                        {validationErrors.map(error => (
+                            <li key={error} className="auth-validation-error auth-error">{error}</li>
+                        ))}
+                    </ul>}
                     <div className="entry-form__credential-input-wrapper">
                         <input
                             id="entry-form__credential-input"
                             className="entry-form__credential-input"
+                            maxLength={255}
                             value={credential}
                             onChange={(e) => setCredential(e.target.value)}
                         />
@@ -67,10 +75,8 @@ const EntryForm = () => {
                     <button
                         className="entry-form__or-button"
                         onClick={() => {
-                            dispatch(showAuthLoader());
-                            setTimeout(() => {
-                                dispatch(hideAuthLoader())
-                            }, 5000);
+                            dispatch(login('Demo', 'password'));
+                            dispatch(hideModal());
                         }}
                     >
                         Login as the Demo User
