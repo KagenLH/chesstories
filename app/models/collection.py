@@ -19,5 +19,6 @@ class Collection(db.Model):
             'name': self.name,
             'description': self.description,
             'preview_url': self.preview_url,
-            'banner_url': self.banner_url
+            'banner_url': self.banner_url,
+            'owner': self.owner.username
         }

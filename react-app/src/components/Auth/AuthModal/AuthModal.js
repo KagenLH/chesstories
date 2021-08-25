@@ -5,7 +5,7 @@ import PasswordForm from './PasswordForm';
 import SignupForm from './SignupForm';
 import AuthLoader from '../../AuthLoader';
 
-import { verifyCredential, hideModal } from '../../../store/modal';
+import { hideModal } from '../../../store/modal';
 
 import './AuthModal.css';
 
