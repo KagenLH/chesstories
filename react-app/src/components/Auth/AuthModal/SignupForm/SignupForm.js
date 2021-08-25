@@ -25,7 +25,8 @@ const SignupForm = () => {
         dispatch(showAuthLoader());
 
         if(password !== confirmPassword) {
-            setValidationErrors(['Password and Confirm Password do not match.']);
+            setValidationErrors([':Password and Confirm Password do not match.']);
+            dispatch(hideAuthLoader());
             return;
         }
 
