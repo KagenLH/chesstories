@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setPhaseEntry, showAuthLoader, hideAuthLoader, hideModal } from "../../../../store/modal";
 import { login, signUp } from "../../../../store/session";
 
+import '../EntryForm/EntryForm.css';
 import './SignupForm.css';
 
 const SignupForm = () => {
@@ -49,6 +50,11 @@ const SignupForm = () => {
                 className="signup-form"
                 onSubmit={onSubmit}
             >
+                <ul className="auth-validation-errors">
+                    {validationErrors.map(error => (
+                        <li key={error} className="auth-validation-error auth-error">{error.split(':')[1].trim()}</li>
+                    ))}
+                </ul>
                 <div className="signup-form__field">
                     <label className="signup-form__label">
                         E-mail
