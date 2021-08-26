@@ -1,0 +1,43 @@
+.collection-form {
+    display: flex;
+    width: 1000px;
+    flex-direction: column;
+}
+
+.collection-form__field {
+    margin-top: 25px;
+}
+
+.collection-form__label {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.collection-form__input-wrapper {
+    margin-top: 10px;
+}
+
+.collection-form__input {
+    width: 1000px;
+    height: 40px;
+    font-size: 20px;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.collection-form__textarea {
+    height: 250px;
+    padding: 15px;
+}
+
+.collection-form__submit {
+    background-color: #262626;
+    align-self: center;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #e5e5e5;
+    height: 35px;
+    width: 125px;
+    font-size: 18px;
+    font-weight: 600;
+}

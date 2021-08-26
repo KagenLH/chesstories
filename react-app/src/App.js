@@ -8,6 +8,8 @@ import NavBar from './components/NavBar';
 import SplashPage from './components/Splash/SplashPage';
 import AuthModal from './components/Auth/AuthModal/AuthModal';
 import CollectionsPage from './components/CollectionsPage';
+import CreateCollection from './components/CreateCollection';
+import Collection from './components/Collection';
 
 import { authenticate } from './store/session';
 
@@ -37,6 +39,12 @@ function App() {
         </Route>
         <ProtectedRoute path="/collections" exact={true}>
           <CollectionsPage/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/collections/new">
+          <CreateCollection/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/collections/:id">
+          <Collection/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

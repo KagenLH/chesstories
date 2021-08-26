@@ -1,0 +1,82 @@
+.collection-banner {
+    position: relative;
+    height: 325px;
+    width: 100%;
+}
+
+.collection-content {
+    position: relative;
+    padding: 25px;
+    width: 100%;
+    height: 100%;
+}
+
+.collection-content__header {
+    display: flex;
+    justify-content: center;
+}
+
+.collection-content__title {
+    font-size: 30px;
+    font-weight: 600px;
+}
+
+.collection-content__body {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.collection-content__body-description {
+    width: 800px;
+    font-size: 20px;
+    white-space: pre;
+}
+
+.collection-content__edit {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    top: 35px;
+    right: 100px;
+}
+
+.collection-content__delete {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    top: 35px;
+    right: 50px;
+}
+
+.collection-content__form {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.collection-content__form-back {
+    background-color: salmon;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    width: 125px;
+    height: 35px;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.collection-content__form-or {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 5px;
+}

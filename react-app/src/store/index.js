@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import modal from './modal';
 import collections from './collections';
+import active from './active';
 
 const rootReducer = combineReducers({
   session,
   modal,
   collections,
+  active,
 });
 
 
