@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { loadCollections } from '../../store/collections';
 
+import CollectionForm from '../CollectionForm';
 import './CollectionsPage.css';
 
 const CollectionsPage = () => {
@@ -34,6 +35,7 @@ const CollectionsPage = () => {
                     </div>
                 ))}
             </div>
+        <CollectionForm/>
         </div>
     )
 };
