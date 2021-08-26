@@ -24,7 +24,26 @@ def get_collections():
 @login_required
 def get_collection_by_id(id):
     collection = Collection.query.get(id)
-    return collection.to_dict()
+    if collection:
+        return collection.to_dict()
+    else:
+        return "A collection with that ID doesn't exist."
+
+@collection_routes.route('/<int:id>/banner')
+def change_banner_image(id):
+    collection = Collection.query.get(id)
+    if collection:
+        banner_image = request.files['banner_image']
+        if banner_image:
+            banner_url = upload_file_to_s3(banner_image, Config.S3_BUCKET)
+            collection.banner_url = banner_url
+            db.session.save()
+            db.session.commit()
+            return collection.to_dict()
+        else:
+            return "No image sent to the server.", 400
+    else:
+        return "A collection with that ID doesn't exist.", 400
 
 
 @collection_routes.route('/', methods=['POST'])
@@ -36,7 +55,7 @@ def create_collection():
     form = CollectionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        if form.preview_image:
+        if form.preview_image.data:
             image_url = upload_file_to_s3(form.preview_image.data, Config.S3_BUCKET)
             new_collection = Collection(
                 owner_id=current_user.id,
@@ -59,4 +78,4 @@ def create_collection():
             db.session.commit()
             return new_collection.to_dict()
     else:
-        return { 'errors': validation_errors_to_error_messages(form.errors) }
+        return { 'errors': validation_errors_to_error_messages(form.errors) }, 400
