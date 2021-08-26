@@ -18,10 +18,10 @@ const addCollection = (collection) => {
     };
 };
 
-const updateBanner = (id, bannerUrl) => {
+const updateCollection = (collection) => {
     return {
         type: UPDATE_COLLECTION,
-        payload: [id, bannerUrl],
+        payload: collection,
     };
 };
 
@@ -30,7 +30,6 @@ export const loadCollections = () => async (dispatch) => {
 
     if(res.ok) {
         const data = await res.json();
-        console.log(data.collections);
         dispatch(setCollections(data.collections));
         return null;
     } else {
@@ -65,6 +64,29 @@ export const createCollection = (name, description, previewImage) => async (disp
     }
 };
 
+export const uploadBanner = (bannerImage, id) => async (dispatch) => {
+    const form = new FormData();
+    form.append('banner_image', bannerImage);
+
+    const res = await fetch(`/api/collections/${id}/banner`, {
+        method: 'PATCH',
+        body: form,
+    });
+
+    if(res.ok) {
+        const collection = await res.json();
+        dispatch(updateCollection(collection));
+        return null;
+    } else if(res.status < 500) {
+        const errors = await res.json();
+        return errors;
+    } else {
+        return (
+            <Redirect to="/error"/>
+        )
+    }
+}
+
 const initialState = [];
 
 const collectionsReducer = (state=initialState, action) => {
@@ -73,6 +95,12 @@ const collectionsReducer = (state=initialState, action) => {
             return [ ...action.payload ];
         case ADD_COLLECTION:
             return [ ...state, action.payload ];
+        case UPDATE_COLLECTION: {
+            const newState = { ...state };
+            const collectionToUpdate = state.findIndex(collection => collection.id === action.payload.id);
+            newState[collectionToUpdate] = action.payload;
+            return newState;
+        }
         default:
             return state;
     }

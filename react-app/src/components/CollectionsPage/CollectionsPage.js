@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { loadCollections } from '../../store/collections';
+import { loadCollections, uploadBanner } from '../../store/collections';
 
 import CollectionForm from '../CollectionForm';
 import './CollectionsPage.css';
 
 const CollectionsPage = () => {
+    const [bannerImage, setBannerImage] = useState('');
     const collections = useSelector(state => state.collections);
 
     const dispatch = useDispatch();
@@ -14,6 +15,12 @@ const CollectionsPage = () => {
     useEffect(() => {
         dispatch(loadCollections());
     }, [dispatch]);
+
+    const updateBanner = async (e) => {
+        e.preventDefault();
+        const errors = await dispatch(uploadBanner(bannerImage, 1));
+        console.log(errors);
+    }
 
     return (
         <div className="collections-container">
@@ -36,6 +43,13 @@ const CollectionsPage = () => {
                 ))}
             </div>
         <CollectionForm/>
+        <form onSubmit={updateBanner}>
+            <input
+                type="file"
+                onChange={(e) => setBannerImage(e.target.files[0])}
+            />
+            <button>Update Banner</button>
+        </form>
         </div>
     )
 };
