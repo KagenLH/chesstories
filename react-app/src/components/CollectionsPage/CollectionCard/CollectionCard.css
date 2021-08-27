@@ -7,6 +7,11 @@
     margin-left: 50px;
     flex-wrap: wrap;
     border-radius: 5px;
+    transition: all .1s ease-in-out;
+}
+
+.collection-card__container:hover {
+    transform: scale(1.05);
 }
 
 .collection-card__preview {
@@ -40,4 +45,9 @@
     padding-left: 15px;
     font-weight: 600;
     color:rgba(0, 0, 0, 0.8);
+}
+
+.collection-card__body {
+    max-height: 145px;
+    overflow: hidden;
 }
