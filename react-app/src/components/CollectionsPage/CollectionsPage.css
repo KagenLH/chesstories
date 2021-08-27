@@ -1,0 +1,31 @@
+.collections-list {
+    margin-top: 20px;
+    width: 1200px;
+    display: flex;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+}
+
+.collections-page__header {
+    font-size: 34px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.collections__new {
+    position: absolute;
+    right: 20px;
+    top: 70px;
+}
+
+.collections__new-link {
+    text-decoration: none;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.801);
+    margin-left: 10px;
+}

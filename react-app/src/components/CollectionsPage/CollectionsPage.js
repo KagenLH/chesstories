@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { loadCollections } from '../../store/collections';
 
@@ -18,9 +19,14 @@ const CollectionsPage = () => {
 
     return (
         <div className="collections-container">
-            <h2>
-                Collections Page.
-            </h2>
+            <div className="collections-page__header">
+                Most Popular Collections
+            </div>
+            <span className="collections__new">Want to create your own collection?
+            <NavLink to="/collections/new" className="collections__new-link">
+                Start here.
+            </NavLink>
+            </span>
             <div className="collections-list">
                 {collections?.map((collection) => (
                     <div key={collection.id}>

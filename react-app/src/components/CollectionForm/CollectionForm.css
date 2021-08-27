@@ -41,3 +41,8 @@
     font-size: 18px;
     font-weight: 600;
 }
+
+.collection-form__error {
+    color: red;
+    margin-top: 5px;
+}

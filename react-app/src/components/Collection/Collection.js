@@ -24,7 +24,8 @@ const Collection = () => {
 
     return (
         <div className="collection-container">
-            <div className="collection-banner" style={{backgroundImage: `url(${collection?.banner_url})`}}>
+            <div className="collection-banner">
+                <img className="collection-banner-image" src={collection?.banner_url} alt="\A"/>
                 {context === "edit" &&
                 <button className="collection-banner__change">
                     <label style={{cursor: "pointer"}}>

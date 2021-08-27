@@ -1,0 +1,14 @@
+.create-collection-content {
+    position: relative;
+    width: 1000px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.create-collection-header {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 25px;
+}
