@@ -68,6 +68,9 @@ const Collection = () => {
                         <i className="fas fa-trash"></i>
                     </button>}
                 </div>
+                <div className="collection-content__pretext">
+                    Curated by {collection.owner}
+                </div>
                 <div className="collection-content__body">
                     <div className="collection-content__body-description">
                         {collection?.description}

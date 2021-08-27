@@ -22,7 +22,7 @@ const CollectionsPage = () => {
             <div className="collections-page__header">
                 Most Popular Collections
             </div>
-            <span className="collections__new">Want to create your own collection?
+            <span className="collections__new">Want to curate your own collection?
             <NavLink to="/collections/new" className="collections__new-link">
                 Start here.
             </NavLink>

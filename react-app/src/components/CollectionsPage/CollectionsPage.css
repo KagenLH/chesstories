@@ -1,6 +1,6 @@
 .collections-list {
     margin-top: 20px;
-    width: 1200px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -34,6 +34,7 @@
 
 .collections-card {
     margin-top: 25px;
+    margin-bottom: 15px;
     margin-left: 10px;
     margin-right: 10px;
 }

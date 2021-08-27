@@ -28,6 +28,7 @@
 .collection-content__header {
     display: flex;
     justify-content: center;
+    max-width: 900px;
 }
 
 .collection-content__title {
@@ -38,13 +39,13 @@
 .collection-content__body {
     display: flex;
     margin-top: 20px;
-    padding-left: 20px;
+    padding-left: 30px;
 }
 
 .collection-content__body-description {
-    width: 800px;
     font-size: 20px;
-    white-space: pre;
+    white-space: pre-wrap;
+    max-width: 900px;
 }
 
 .collection-content__edit {
@@ -110,4 +111,12 @@
 
 .collection-banner__change:hover {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.collection-content__pretext {
+    padding-left: 40px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color:rgba(0, 0, 0, 0.7);
 }

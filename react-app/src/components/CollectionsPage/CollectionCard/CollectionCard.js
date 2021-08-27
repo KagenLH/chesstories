@@ -20,6 +20,9 @@ const CollectionCard = ({ collection }) => {
                 <div className="collection-card__header">
                     {collection.name}
                 </div>
+                <div className="collection-card__owner">
+                    Curator: {collection.owner}
+                </div>
                 <div className="collection-card__body">
                     {collection.description}
                 </div>
