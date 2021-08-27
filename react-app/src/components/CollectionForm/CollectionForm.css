@@ -46,3 +46,9 @@
     color: red;
     margin-top: 5px;
 }
+
+.collection-form__preview-image-image {
+    position: relative;
+    height: 225px;
+    width: 300px;
+}

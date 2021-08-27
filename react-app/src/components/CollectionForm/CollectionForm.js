@@ -28,12 +28,11 @@ const CollectionForm = ({ context }) => {
         e.preventDefault();
 
         if(context !== "edit") {
-            const errors = await dispatch(createCollection(title, description, previewImage));
-            console.log(errors);
-            if(!errors) {
-                history.push('/collections');
+            const collection = await dispatch(createCollection(title, description, previewImage));
+            if(!collection.errors) {
+                history.push(`/collections/${collection.id}`);
             } else {
-                setValidationErrors(errors.errors);
+                setValidationErrors(collection.errors);
             }
         } else {
             const errors = await dispatch(postCollectionUpdate(collection.id, title, description, previewImage));
@@ -111,9 +110,15 @@ const CollectionForm = ({ context }) => {
                         <input
                             className="collection-form__input"
                             type="file"
-                            onChange={(e) => setPreviewImage(e.target.files[0])}
+                            onChange={(e) => {
+                                setPreviewImage(e.target.files[0]);
+                                console.log(e.target.files[0]);
+                            }}
                         />
                     </div>
+                </div>
+                <div className="collection-form__preview-image">
+                    {previewImage && <img src={URL.createObjectURL(previewImage)} alt="\A" className="collection-form__preview-image-image"/>}
                 </div>
                 <button
                     className="collection-form__submit"

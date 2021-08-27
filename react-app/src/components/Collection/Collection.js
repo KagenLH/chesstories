@@ -8,10 +8,12 @@ import { fetchCollection } from '../../store/active';
 import CollectionForm from '../CollectionForm';
 
 import './Collection.css';
+import defaultBanner from '../../assets/images/default-banner.jpg'
 
 const Collection = () => {
     const [context, setContext] = useState("view");
     const collection = useSelector(state => state.active.collection);
+    const user = useSelector(state => state.session.user);
 
     const dispatch = useDispatch();
     const location = useLocation();
@@ -25,7 +27,7 @@ const Collection = () => {
     return (
         <div className="collection-container">
             <div className="collection-banner">
-                <img className="collection-banner-image" src={collection?.banner_url} alt="\A"/>
+                <img className="collection-banner-image" src={collection?.banner_url ? collection?.banner_url : defaultBanner} alt="\A"/>
                 {context === "edit" &&
                 <button className="collection-banner__change">
                     <label style={{cursor: "pointer"}}>
@@ -50,13 +52,13 @@ const Collection = () => {
                     <div className="collection-content__title">
                         {collection?.name}
                     </div>
-                    <button
+                    {collection?.owner_id === user.id && <button
                         className="collection-content__edit"
                         onClick={() => setContext("edit")}
                     >
                         <i className="fas fa-edit"></i>
-                    </button>
-                    <button
+                    </button>}
+                    {collection?.owner_id === user.id && <button
                         className="collection-content__delete"
                         onClick={() => {
                             history.push('/collections');
@@ -64,7 +66,7 @@ const Collection = () => {
                         }}
                     >
                         <i className="fas fa-trash"></i>
-                    </button>
+                    </button>}
                 </div>
                 <div className="collection-content__body">
                     <div className="collection-content__body-description">

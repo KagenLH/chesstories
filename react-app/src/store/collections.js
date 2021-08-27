@@ -61,7 +61,7 @@ export const createCollection = (name, description, previewImage) => async (disp
     if(res.ok) {
         const collection = await res.json();
         dispatch(addCollection(collection));
-        return null;
+        return collection;
     } else if(res.status < 500) {
         const errors = await res.json();
         return errors;
