@@ -29,7 +29,7 @@ const CollectionsPage = () => {
             </span>
             <div className="collections-list">
                 {collections?.map((collection) => (
-                    <div key={collection.id}>
+                    <div key={collection.id} className="collections-card">
                         <CollectionCard collection={collection}/>
                     </div>
                 ))}

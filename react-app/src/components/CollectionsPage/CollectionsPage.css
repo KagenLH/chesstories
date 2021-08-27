@@ -2,10 +2,12 @@
     margin-top: 20px;
     width: 1200px;
     display: flex;
+    flex-wrap: wrap;
     position: relative;
     left: 50%;
     top: 50%;
     transform: translateX(-50%);
+    padding-bottom: 50px;
 }
 
 .collections-page__header {
@@ -28,4 +30,10 @@
     font-weight: 600;
     color: rgba(0, 0, 0, 0.801);
     margin-left: 10px;
+}
+
+.collections-card {
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
