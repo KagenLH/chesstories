@@ -69,7 +69,7 @@ const Collection = () => {
                     </button>}
                 </div>
                 <div className="collection-content__pretext">
-                    Curated by {collection.owner}
+                    Curated by {collection?.owner}
                 </div>
                 <div className="collection-content__body">
                     <div className="collection-content__body-description">
