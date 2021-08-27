@@ -24,7 +24,25 @@ const Collection = () => {
 
     return (
         <div className="collection-container">
-            <div className="collection-banner" style={{backgroundImage: `url(${collection?.banner_url})`}}></div>
+            <div className="collection-banner" style={{backgroundImage: `url(${collection?.banner_url})`}}>
+                {context === "edit" &&
+                <button className="collection-banner__change">
+                    <label style={{cursor: "pointer"}}>
+                        <i className="fas fa-edit"></i>
+                        <input
+                            type="file"
+                            onChange={async (e) => {
+                                await dispatch(uploadBanner(e.target.files[0], collection.id));
+                                history.push('/collections');
+                                history.push(`/collections/${collection.id}`);
+                                setContext("edit");
+                            }}
+                            style={{display: "none"}}
+                        />
+                    </label>
+                </button>
+                }
+            </div>
             {context === "view" && 
             <div className="collection-content">
                 <div className="collection-content__header">

@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { loadCollections } from '../../store/collections';
 
+import CollectionCard from './CollectionCard';
+
 import './CollectionsPage.css';
 
 const CollectionsPage = () => {
@@ -22,15 +24,7 @@ const CollectionsPage = () => {
             <div className="collections-list">
                 {collections?.map((collection) => (
                     <div key={collection.id}>
-                        <div>
-                            Created by: {collection.owner}
-                        </div>
-                        <div>
-                            {collection.name}
-                        </div>
-                        <div>
-                            {collection.description}
-                        </div>
+                        <CollectionCard collection={collection}/>
                     </div>
                 ))}
             </div>

@@ -50,6 +50,7 @@ const CollectionForm = ({ context }) => {
                             className="collection-form__input"
                             type="text"
                             value={title}
+                            maxLength={70}
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
