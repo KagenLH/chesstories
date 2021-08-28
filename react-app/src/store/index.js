@@ -4,12 +4,14 @@ import session from './session';
 import modal from './modal';
 import collections from './collections';
 import active from './active';
+import loader from './loader';
 
 const rootReducer = combineReducers({
   session,
   modal,
   collections,
   active,
+  loader,
 });
 
 

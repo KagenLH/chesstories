@@ -22,8 +22,8 @@
 .loader-knight {
     opacity: 0;
     font-size: 60px;
-    animation: cycle-pieces 3.5s infinite;
-    animation-delay: 1.5s;
+    animation: cycle-pieces 2s infinite;
+    animation-delay: 1.35s;
 }
 
 .loader-pawn {
@@ -35,15 +35,15 @@
 .loader-rook {
     opacity: 0;
     font-size: 60px;
-    animation: cycle-pieces 3.5s infinite;
-    animation-delay: 0.5s;
+    animation: cycle-pieces 2s infinite;
+    animation-delay: 0.75s;
 }
 
 .loader-king {
     opacity: 0;
     font-size: 60px;
-    animation: cycle-pieces 3.5s infinite;
-    animation-delay: 3s;
+    animation: cycle-pieces 2s infinite;
+    animation-delay: 0.1s;
 }
 
 @keyframes cycle-pieces {

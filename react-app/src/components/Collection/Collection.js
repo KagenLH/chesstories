@@ -4,6 +4,7 @@ import { useLocation, useHistory } from 'react-router';
 
 import { uploadBanner, deleteCollection } from '../../store/collections';
 import { fetchCollection } from '../../store/active';
+import { showLoader, hideLoader } from '../../store/loader';
 
 import CollectionForm from '../CollectionForm';
 
@@ -20,8 +21,14 @@ const Collection = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const id = location.pathname.split('/')[2];
-        dispatch(fetchCollection(id));
+        const loadCollection = async () => {
+            dispatch(showLoader());
+            const id = location.pathname.split('/')[2];
+            await dispatch(fetchCollection(id));
+            dispatch(hideLoader());
+        }
+
+        loadCollection();
     }, [dispatch, location.pathname]);
 
     return (

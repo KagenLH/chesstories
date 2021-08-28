@@ -13,3 +13,19 @@ export const hideLoader = () => {
     };
 };
 
+const initialState = {
+    show: false,
+};
+
+const loaderReducer = (state=initialState, action) => {
+    switch(action.type) {
+        case SHOW_LOADER:
+            return { show: true };
+        case HIDE_LOADER:
+            return { show: false };
+        default:
+            return state;
+    }
+};
+
+export default loaderReducer;

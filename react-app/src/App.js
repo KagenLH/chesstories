@@ -10,6 +10,7 @@ import AuthModal from './components/Auth/AuthModal/AuthModal';
 import CollectionsPage from './components/CollectionsPage';
 import CreateCollection from './components/CreateCollection';
 import Collection from './components/Collection';
+import Loader from './components/Loader/Loader';
 
 import { authenticate } from './store/session';
 
@@ -33,6 +34,7 @@ function App() {
       <AuthModal/>
       <SplashNav/>
       <NavBar/>
+      <Loader/>
       <Switch>
         <Route path='/' exact={true} >
           <SplashPage/>

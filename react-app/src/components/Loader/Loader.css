@@ -1,0 +1,12 @@
+.loader-container {
+    position: absolute;
+    background-color: #252525;
+    width: 100%;
+    height: calc(100% - 50px);
+    z-index: 2;
+}
+
+.loader-container * {
+    color: white;
+    font-size: 100px;
+}
