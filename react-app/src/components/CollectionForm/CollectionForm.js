@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import { createCollection, postCollectionUpdate } from '../../store/collections';
+import { showLoader, hideLoader } from '../../store/loader';
 
 import './CollectionForm.css';
 
@@ -27,20 +28,25 @@ const CollectionForm = ({ context }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        dispatch(showLoader());
         if(context !== "edit") {
             const collection = await dispatch(createCollection(title, description, previewImage));
             if(!collection.errors) {
                 history.push(`/collections/${collection.id}`);
+                dispatch(hideLoader());
             } else {
                 setValidationErrors(collection.errors);
+                dispatch(hideLoader());
             }
         } else {
             const errors = await dispatch(postCollectionUpdate(collection.id, title, description, previewImage));
             if(!errors) {
                 history.push(`/collections`);
                 history.push(`/collections/${collection.id}`);
+                dispatch(hideLoader());
             } else {
                 setValidationErrors(errors.errors);
+                dispatch(hideLoader());
             }
         }
     }

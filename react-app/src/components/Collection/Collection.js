@@ -25,7 +25,9 @@ const Collection = () => {
             dispatch(showLoader());
             const id = location.pathname.split('/')[2];
             await dispatch(fetchCollection(id));
-            dispatch(hideLoader());
+            setTimeout(() => {
+                dispatch(hideLoader());
+            }, 1000)
         }
 
         loadCollection();
@@ -42,10 +44,12 @@ const Collection = () => {
                         <input
                             type="file"
                             onChange={async (e) => {
+                                dispatch(showLoader());
                                 await dispatch(uploadBanner(e.target.files[0], collection.id));
                                 history.push('/collections');
                                 history.push(`/collections/${collection.id}`);
                                 setContext("edit");
+                                dispatch(hideLoader());
                             }}
                             style={{display: "none"}}
                         />
