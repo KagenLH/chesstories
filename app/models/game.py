@@ -10,6 +10,8 @@ class Game(db.Model):
     pgn = db.Column(db.Text, nullable=False)
     number = db.Column(db.Integer, nullable=False)
 
+    collection = db.relationship("Collection", backref="games", lazy=True)
+
     @staticmethod
     def parse_pgn(pgn):
         game = chess.pgn.read_game(pgn)
@@ -22,5 +24,5 @@ class Game(db.Model):
             "id": self.id,
             "collection_id": self.collection_id,
             "number": self.number,
-            "game": self.pgn_to_dict()
+            "game": self.pgn
         }
