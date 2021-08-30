@@ -22,3 +22,6 @@ class Collection(db.Model):
             'banner_url': self.banner_url,
             'owner': self.owner.username
         }
+    
+    def get_games(self):
+        return self.games

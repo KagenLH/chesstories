@@ -127,3 +127,13 @@ def destroy_collection(id):
         return "Successfully deleted collection."
     else:
         return "You do not own the collection you are attempting to delete.", 403
+
+
+"""
+Game related routes for collections
+"""
+@collection_routes.route('/<int:id>/games/<int:game_id>')
+def load_game(id, game_id):
+    collection = Collection.query.filter(Collection.id == id).first()
+    matched_game = next(filter(lambda game: game.id == game_id, collection.get_games()))
+    return matched_game.to_dict()

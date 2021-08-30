@@ -1,4 +1,5 @@
 import chess.pgn
+import io
 
 from app.models import db
 
@@ -14,7 +15,8 @@ class Game(db.Model):
 
     @staticmethod
     def parse_pgn(pgn):
-        game = chess.pgn.read_game(pgn)
+        pgn_parsable = io.TextIOWrapper(pgn)
+        game = chess.pgn.read_game(pgn_parsable)
         exporter = chess.pgn.StringExporter(headers=True, variations=False, comments=False)
         pgn_string = game.accept(exporter)
         return pgn_string

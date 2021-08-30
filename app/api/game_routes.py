@@ -14,6 +14,7 @@ def create_game():
         if form.pgn.data:
             new_game = Game(
                 collection_id=form.collection_id.data,
+                number=form.number.data,
                 pgn=Game.parse_pgn(form.pgn.data)
             )
 

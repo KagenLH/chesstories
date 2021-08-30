@@ -13,6 +13,7 @@ import defaultBanner from '../../assets/images/default-banner.jpg'
 
 const Collection = () => {
     const [context, setContext] = useState("view");
+    const [pgn, setPgn] = useState("");
     const collection = useSelector(state => state.active.collection);
     const user = useSelector(state => state.session.user);
 
@@ -32,6 +33,21 @@ const Collection = () => {
 
         loadCollection();
     }, [dispatch, location.pathname]);
+
+    const createGame = async (e) => {
+        e.preventDefault();
+        const form = new FormData();
+        form.append('pgn', pgn);
+        form.append('collection_id', collection.id);
+        form.append('number', 1);
+
+        const res = await fetch('/api/games/', {
+            method: 'POST',
+            body: form,
+        });
+        
+        console.log(res);
+    }
 
     return (
         <div className="collection-container">
@@ -87,6 +103,17 @@ const Collection = () => {
                         {collection?.description}
                     </div>
                 </div>
+                <form onSubmit={createGame}>
+                    <input
+                        type="file"
+                        onChange={(e) => {
+                            setPgn(e.target.files[0]);
+                        }}
+                    />
+                    <button>
+                        Submit
+                    </button>
+                </form>
             </div>}
             {context === "edit" && 
             <div className="collection-content">
