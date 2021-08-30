@@ -7,8 +7,9 @@
 
 -i https://pypi.org/simple
 alembic==1.6.5
-boto3==1.18.29
-botocore==1.21.29; python_version >= '3.6'
+boto3==1.18.31
+botocore==1.21.31; python_version >= '3.6'
+chess==1.6.1
 click==7.1.2
 flask-cors==3.0.8
 flask-login==0.5.0
