@@ -48,3 +48,34 @@ def delete_game(id):
             return "You do not own that game that you are trying to delete.", 401
     else:
         return "The game that you are trying to delete was not found.", 404
+
+
+@game_routes.route('/<int:id>/number', methods=['PATCH'])
+@login_required
+def shift_game(id):
+    shifted_game = Game.query.get(id)
+    if shifted_game:
+        if shifted_game.collection.owner_id == current_user.id:
+            direction = request.get_json()
+            collection = Collection.query.filter(Collection.id == shifted_game.collection_id).first()
+            if direction == "up":
+                if shifted_game.number != 1:
+                    game_above = Game.query.filter(Game.number == shifted_game.number - 1, Game.collection_id == shifted_game.collection_id).first()
+                    [game_above.number, shifted_game.number] = [shifted_game.number, game_above.number]
+                    db.session.commit()
+                else:
+                    return "Game is already at the top of the list.", 400
+            if direction == "down":
+                print(max(collection.games, key=lambda game: game.number).number)
+                if shifted_game.number != max(collection.games, key=lambda game: game.number).number:
+                    print("SHIFTED GAME NUMBER ---------", shifted_game.number)
+                    game_below = Game.query.filter(Game.number == shifted_game.number + 1, Game.collection_id == shifted_game.collection_id).first()
+                    [game_below.number, shifted_game.number] = [shifted_game.number, game_below.number]
+                    db.session.commit()
+                else:
+                    return "Game is already at the bottom of the list.", 400
+            return collection.to_dict()
+        else:
+            return "You do not own the game that you are trying to shift.", 401
+    else:
+        return "The game that you are trying to shift was not found.", 404

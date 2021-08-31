@@ -69,6 +69,19 @@ const Collection = () => {
         }
     };
 
+    const moveGame = async (id, direction) => {
+        const res = await fetch(`/api/games/${id}/number`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(direction),
+        });
+
+        if(res.ok) {
+            const newCollection = await res.json();
+            dispatch(setActiveCollection(newCollection));
+        }
+    };
+
     return (
         <div className="collection-container">
             <div className="collection-banner">
@@ -172,7 +185,19 @@ const Collection = () => {
                                 {collection.games.map(game => [game, parser.parse(game.game, { startRule: 'game'})])
                                                  .map(game => (
                                 <tr>
-                                    <td className="game-table-cell game-table-number">{game[0].number}</td>
+                                    <td className="game-table-cell game-table-number">
+                                        <div className="game-table-cell__number">
+                                            <div className="game-table-cell__carrot" onClick={() => moveGame(game[0].id, "up")}>
+                                                <i className="fas fa-caret-up"></i>
+                                            </div>
+                                            <div className="game-table-cell__number-value">
+                                                {game[0].number}
+                                            </div>
+                                            <div className="game-table-cell__carrot" onClick={() => moveGame(game[0].id, "down")}>
+                                                <i className="fas fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td className="game-table-cell">{game[1].tags.White}</td>
                                     <td className="game-table-cell">{game[1].tags.Black}</td>
                                     <td className="game-table-cell">{game[1].tags.Event}</td>
