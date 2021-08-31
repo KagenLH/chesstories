@@ -21,7 +21,7 @@ class Collection(db.Model):
             'preview_url': self.preview_url,
             'banner_url': self.banner_url,
             'owner': self.owner.username,
-            'games': [game.to_dict() for game in self.games]
+            'games': sorted([game.to_dict() for game in self.games], key=lambda game: game['number'])
         }
     
     def get_games(self):

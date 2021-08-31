@@ -16,6 +16,8 @@ import defaultBanner from '../../assets/images/default-banner.jpg'
 const Collection = () => {
     const [context, setContext] = useState("view");
     const [pgn, setPgn] = useState("");
+    const [errors, setErrors] = useState([]);
+
     const collection = useSelector(state => state.active.collection);
     const user = useSelector(state => state.session.user);
 
@@ -40,7 +42,6 @@ const Collection = () => {
         const form = new FormData();
         form.append('pgn', pgn);
         form.append('collection_id', collection.id);
-        form.append('number', 1);
 
         const res = await fetch('/api/games/', {
             method: 'POST',
@@ -55,8 +56,17 @@ const Collection = () => {
         }
     };
 
-    const deleteGame = async () => {
+    const deleteGame = async (id) => {
+        const res = await fetch(`/api/games/${id}`, {
+            method: 'DELETE',
+        });
 
+        if(res.ok) {
+            const newCollection = await res.json();
+            dispatch(setActiveCollection(newCollection));
+        } else {
+            setErrors(['Something went wrong on our end... Please try again.']);
+        }
     };
 
     return (
@@ -159,16 +169,16 @@ const Collection = () => {
                                 {/* <th className="game-table-header">Remove</th> */}
                             </thead>
                             <tbody>
-                                {collection.games.map(game => parser.parse(game.game, { startRule: 'game'}))
-                                                 .map(pgn => (
+                                {collection.games.map(game => [game, parser.parse(game.game, { startRule: 'game'})])
+                                                 .map(game => (
                                 <tr>
-                                    <td className="game-table-cell game-table-number"></td>
-                                    <td className="game-table-cell">{pgn.tags.White}</td>
-                                    <td className="game-table-cell">{pgn.tags.Black}</td>
-                                    <td className="game-table-cell">{pgn.tags.Event}</td>
-                                    <td className="game-table-cell">{normalizeDate(pgn.tags.Date)}</td>
-                                    <td className="game-table-cell">{pgn.tags.Result}</td>
-                                    <td className="game-table-trash" onClick={deleteGame}><i className="fas fa-trash-alt"></i></td>
+                                    <td className="game-table-cell game-table-number">{game[0].number}</td>
+                                    <td className="game-table-cell">{game[1].tags.White}</td>
+                                    <td className="game-table-cell">{game[1].tags.Black}</td>
+                                    <td className="game-table-cell">{game[1].tags.Event}</td>
+                                    <td className="game-table-cell">{normalizeDate(game[1].tags.Date)}</td>
+                                    <td className="game-table-cell">{game[1].tags.Result}</td>
+                                    <td className="game-table-trash" onClick={() => deleteGame(game[0].id)}><i className="fas fa-trash-alt"></i></td>
                                 </tr>
                                 ))}
                             </tbody>
