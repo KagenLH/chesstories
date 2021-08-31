@@ -11,6 +11,7 @@ import CollectionsPage from './components/CollectionsPage';
 import CreateCollection from './components/CreateCollection';
 import Collection from './components/Collection';
 import Loader from './components/Loader/Loader';
+import Game from './components/Game';
 
 import { authenticate } from './store/session';
 
@@ -45,8 +46,11 @@ function App() {
         <ProtectedRoute path="/collections/new">
           <CreateCollection/>
         </ProtectedRoute>
-        <ProtectedRoute path="/collections/:id">
+        <ProtectedRoute path="/collections/:id" exact={true}>
           <Collection/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/collections/:collectionId/games/:gameId">
+          <Game/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
