@@ -19,7 +19,7 @@ const addCollection = (collection) => {
     };
 };
 
-const updateCollection = (collection) => {
+export const updateCollection = (collection) => {
     return {
         type: UPDATE_COLLECTION,
         payload: collection,

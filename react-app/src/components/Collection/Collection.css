@@ -11,6 +11,14 @@
     width: 85%;
 }
 
+.collection-content__crud {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
 .collection-banner-image {
     width: 100%;
     height: 100%;
@@ -27,8 +35,11 @@
 
 .collection-content__header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     max-width: 900px;
+    padding-left: 30px;
 }
 
 .collection-content__title {
@@ -49,23 +60,19 @@
 }
 
 .collection-content__edit {
-    position: absolute;
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 28px;
-    top: 35px;
-    right: 100px;
+    margin-right: 10px;
 }
 
 .collection-content__delete {
-    position: absolute;
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 28px;
-    top: 35px;
-    right: 50px;
+    margin-right: 10px;
 }
 
 .collection-content__form {
@@ -119,4 +126,95 @@
     font-size: 18px;
     font-weight: 600;
     color:rgba(0, 0, 0, 0.7);
+}
+
+.collection-games-tab-button {
+    position: relative;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.collection-games-tab-button:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+.collection-content__games {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.collection-content__games-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    max-width: 650px;
+}
+
+.collection-content__games-table__container {
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+    width: 800px;
+    background-color: #e6e6e6;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.game-table-header {
+    width: 150px;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+@media screen and (min-width: 1920px) {
+    .collection-content__games-table__container {
+        width: 1000px;
+    }
+
+    .game-table-header {
+        width: 175px;
+    }
+}
+
+.game-table-cell {
+    font-size: 12px;
+    justify-self: center;
+    padding: 2px;
+}
+
+.game-table-number {
+    max-width: 30px;
+}
+
+.game-table-trash {
+    padding-left: 15px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.collection-content__games-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.collection-content__games-add-button {
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    width: 150px;
+    height: 35px;
+    margin-top: 20px;
+    cursor: pointer;
 }

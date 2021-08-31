@@ -1,6 +1,6 @@
 .collection-form {
     display: flex;
-    width: 1000px;
+    width: 800px;
     flex-direction: column;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .collection-form__input {
-    width: 1000px;
+    width: 800px;
     height: 40px;
     font-size: 20px;
     padding: 5px;
@@ -51,4 +51,24 @@
     position: relative;
     height: 225px;
     width: 300px;
+}
+
+@media screen and (max-width: 1550px) {
+    .collection-form {
+        width: 600px;
+    }
+
+    .collection-form__input {
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .collection-form {
+        width: 1000px;
+    }
+
+    .collection-form__input {
+        width: 1000px;
+    }
 }

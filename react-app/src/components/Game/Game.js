@@ -5,6 +5,7 @@ import Chess from 'chess.js';
 
 import { parser } from '@mliebelt/pgn-parser';
 
+import { normalizeDate } from '../../utils/date';
 import './Game.css';
 
 const Game = () => {
@@ -34,15 +35,6 @@ const Game = () => {
         const board = new Chess();
         setGameBoard(board);
     }, [location.pathname]);
-
-    const normalizeDate = (date) => {
-        const month = date.month;
-        const day = date.day;
-        const year  = date.year;
-
-        const newDate = new Date(Date.UTC(year, month, day));
-        return newDate.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    };
 
     const moveOne = () => {
         if(move < game.moves.length - 2) {

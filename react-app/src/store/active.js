@@ -2,7 +2,7 @@ import { Redirect } from "react-router";
 
 const SET_ACTIVE_COLLECTION = 'active/SET_ACTIVE_COLLECTION';
 
-const setActiveCollection = (collection) => {
+export const setActiveCollection = (collection) => {
     return {
         type: SET_ACTIVE_COLLECTION,
         payload: collection,

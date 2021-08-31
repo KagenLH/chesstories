@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useHistory } from 'react-router';
+import { useParams, useHistory } from 'react-router';
+import { parser } from '@mliebelt/pgn-parser';
 
-import { uploadBanner, deleteCollection } from '../../store/collections';
-import { fetchCollection } from '../../store/active';
+import { uploadBanner, updateCollection, deleteCollection } from '../../store/collections';
+import { fetchCollection, setActiveCollection } from '../../store/active';
 import { showLoader, hideLoader } from '../../store/loader';
 
 import CollectionForm from '../CollectionForm';
 
+import { normalizeDate } from '../../utils/date';
 import './Collection.css';
 import defaultBanner from '../../assets/images/default-banner.jpg'
 
@@ -18,13 +20,12 @@ const Collection = () => {
     const user = useSelector(state => state.session.user);
 
     const dispatch = useDispatch();
-    const location = useLocation();
+    const { id } = useParams();
     const history = useHistory();
 
     useEffect(() => {
         const loadCollection = async () => {
             dispatch(showLoader());
-            const id = location.pathname.split('/')[2];
             await dispatch(fetchCollection(id));
             setTimeout(() => {
                 dispatch(hideLoader());
@@ -32,7 +33,7 @@ const Collection = () => {
         }
 
         loadCollection();
-    }, [dispatch, location.pathname]);
+    }, [dispatch, id]);
 
     const createGame = async (e) => {
         e.preventDefault();
@@ -46,8 +47,17 @@ const Collection = () => {
             body: form,
         });
         
-        console.log(res);
-    }
+        if(res.ok) {
+            const newGame = await res.json();
+            console.log(newGame);
+            const newCollection = { ...collection, games: [...collection.games, newGame]};
+            dispatch(setActiveCollection(newCollection));
+        }
+    };
+
+    const deleteGame = async () => {
+
+    };
 
     return (
         <div className="collection-container">
@@ -76,24 +86,26 @@ const Collection = () => {
             {context === "view" && 
             <div className="collection-content">
                 <div className="collection-content__header">
+                    <div className="collection-content__crud">
+                        {collection?.owner_id === user.id && <button
+                            className="collection-content__edit"
+                            onClick={() => setContext("edit")}
+                        >
+                            <i className="fas fa-edit"></i>
+                        </button>}
+                        {collection?.owner_id === user.id && <button
+                            className="collection-content__delete"
+                            onClick={() => {
+                                history.push('/collections');
+                                dispatch(deleteCollection(collection));
+                            }}
+                        >
+                            <i className="fas fa-trash"></i>
+                        </button>}
+                    </div>
                     <div className="collection-content__title">
                         {collection?.name}
                     </div>
-                    {collection?.owner_id === user.id && <button
-                        className="collection-content__edit"
-                        onClick={() => setContext("edit")}
-                    >
-                        <i className="fas fa-edit"></i>
-                    </button>}
-                    {collection?.owner_id === user.id && <button
-                        className="collection-content__delete"
-                        onClick={() => {
-                            history.push('/collections');
-                            dispatch(deleteCollection(collection));
-                        }}
-                    >
-                        <i className="fas fa-trash"></i>
-                    </button>}
                 </div>
                 <div className="collection-content__pretext">
                     Curated by {collection?.owner}
@@ -103,17 +115,13 @@ const Collection = () => {
                         {collection?.description}
                     </div>
                 </div>
-                <form onSubmit={createGame}>
-                    <input
-                        type="file"
-                        onChange={(e) => {
-                            setPgn(e.target.files[0]);
-                        }}
-                    />
-                    <button>
-                        Submit
-                    </button>
-                </form>
+                {collection?.owner_id === user?.id && 
+                <button
+                    className="collection-games-tab-button"
+                    onClick={() => setContext('games')}
+                >
+                    Add or Change Games in this Collection
+                </button>}
             </div>}
             {context === "edit" && 
             <div className="collection-content">
@@ -133,6 +141,55 @@ const Collection = () => {
                 </div>
             </div>
             }
+            {context === "games" &&
+            <div className="collection-content">
+                <div className="collection-content__games">
+                    <div className="collection-content__games-header">
+                        {collection?.name}
+                    </div>
+                    <div className="collection-content__games-table__container">
+                        <table>
+                            <thead>
+                                <th className="game-table-header game-table-number">#</th>
+                                <th className="game-table-header">White</th>
+                                <th className="game-table-header">Black</th>
+                                <th className="game-table-header">Event</th>
+                                <th className="game-table-header">Date</th>
+                                <th className="game-table-header">Result</th>
+                                {/* <th className="game-table-header">Remove</th> */}
+                            </thead>
+                            <tbody>
+                                {collection.games.map(game => parser.parse(game.game, { startRule: 'game'}))
+                                                 .map(pgn => (
+                                <tr>
+                                    <td className="game-table-cell game-table-number"></td>
+                                    <td className="game-table-cell">{pgn.tags.White}</td>
+                                    <td className="game-table-cell">{pgn.tags.Black}</td>
+                                    <td className="game-table-cell">{pgn.tags.Event}</td>
+                                    <td className="game-table-cell">{normalizeDate(pgn.tags.Date)}</td>
+                                    <td className="game-table-cell">{pgn.tags.Result}</td>
+                                    <td className="game-table-trash" onClick={deleteGame}><i className="fas fa-trash-alt"></i></td>
+                                </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <form
+                        className="collection-content__games-form"
+                        onSubmit={createGame}
+                    >
+                        <input
+                            type="file"
+                            onChange={(e) => {
+                                setPgn(e.target.files[0]);
+                            }}
+                        />
+                        <button className="collection-content__games-add-button">
+                            <span className="collection-content__plus">+</span> Add New Game
+                        </button>
+                    </form>
+                </div>
+            </div>}
         </div>
     );
 };

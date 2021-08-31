@@ -20,7 +20,8 @@ class Collection(db.Model):
             'description': self.description,
             'preview_url': self.preview_url,
             'banner_url': self.banner_url,
-            'owner': self.owner.username
+            'owner': self.owner.username,
+            'games': [game.to_dict() for game in self.games]
         }
     
     def get_games(self):
