@@ -229,3 +229,17 @@
     align-items: center;
     margin-right: 5px;
 }
+
+.collection-content__games-back {
+    position: relative;
+    margin-top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 35px;
+    border: none;
+    background-color: #252525;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}

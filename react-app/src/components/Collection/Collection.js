@@ -224,6 +224,12 @@ const Collection = () => {
                         </button>
                     </form>
                 </div>
+                <button
+                    className="collection-content__games-back"
+                    onClick={() => setContext("view")}
+                >
+                        Back
+                </button>
             </div>}
         </div>
     );
