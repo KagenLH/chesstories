@@ -94,6 +94,7 @@
     color: white;
     font-weight: 600;
     font-size: 18px;
+    border-radius: 5px;
 }
 
 .collection-content__form-or {
@@ -180,20 +181,34 @@
     padding-bottom: 5px;
 }
 
-/* @media screen and (min-width: 1920px) {
-    .collection-content__games-table__container {
-        width: 1000px;
-    }
-
-    .game-table-header {
-        width: 175px;
-    }
-} */
-
 .game-table-cell {
     font-size: 12px;
     justify-self: center;
     padding: 2px;
+}
+
+@media screen and (min-width: 1920px) {
+    .collection-content__games-table__container {
+        min-width: 1000px;
+    }
+
+    .game-table-header {
+        width: 190px;
+    }
+
+    .game-table-cell {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1535px) {
+    .collection-content__games-table__container {
+        width: 650px;
+    }
+
+    .game-table-header {
+        width: 115px;
+    }
 }
 
 .game-table-number {

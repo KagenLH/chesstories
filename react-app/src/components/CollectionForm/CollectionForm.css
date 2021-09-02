@@ -40,6 +40,8 @@
     width: 125px;
     font-size: 18px;
     font-weight: 600;
+    border: none;
+    border-radius: 5px;
 }
 
 .collection-form__error {
