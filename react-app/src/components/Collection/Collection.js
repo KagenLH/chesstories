@@ -131,7 +131,12 @@ const Collection = () => {
                     </div>
                 </div>
                 <div className="collection-content__pretext">
-                    Curated by {collection?.owner}
+                    <div className="collection-content__owner">
+                        Curated by {collection?.owner}
+                    </div>
+                    <div className="collection-content__num-games">
+                        {collection?.games.length} games
+                    </div>
                 </div>
                 <div className="collection-content__body">
                     <div className="collection-content__body-description">

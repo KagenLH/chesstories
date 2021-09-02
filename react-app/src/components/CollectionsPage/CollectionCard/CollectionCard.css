@@ -41,7 +41,6 @@
 }
 
 .collection-card__owner {
-    margin-top: 5px;
     padding-left: 15px;
     font-weight: 600;
     color:rgba(0, 0, 0, 0.8);
@@ -50,4 +49,16 @@
 .collection-card__body {
     max-height: 145px;
     overflow: hidden;
+}
+
+.collection-card__header-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.collection-card__num-games {
+    color: rgba(0, 0, 0, 0.7);
+    padding-right: 10px;
 }
