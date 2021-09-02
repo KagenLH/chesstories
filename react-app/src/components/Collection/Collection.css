@@ -131,8 +131,6 @@
 .collection-games-tab-button {
     position: relative;
     bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
     border: none;
     background-color: transparent;
     font-size: 16px;
@@ -217,6 +215,7 @@
     height: 35px;
     margin-top: 20px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .game-table-cell__carrot {
@@ -242,4 +241,30 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+.collection-games__start {
+    position: relative;
+    background-color: #252525;
+    width: 200px;
+    height: 35px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    bottom: 5px;
+    transition: background-color 0.25s;
+    border-radius: 5px;
+}
+
+.collection-games__start:hover {
+    background-color:rgba(0, 0, 0, 0.75);
+}
+
+.collection-content__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }

@@ -49,7 +49,7 @@ function App() {
         <ProtectedRoute path="/collections/:id" exact={true}>
           <Collection/>
         </ProtectedRoute>
-        <ProtectedRoute path="/collections/:collectionId/games/:gameId">
+        <ProtectedRoute path="/collections/:collectionId/games/:gameNum">
           <Game/>
         </ProtectedRoute>
       </Switch>

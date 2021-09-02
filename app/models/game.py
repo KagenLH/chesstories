@@ -26,5 +26,7 @@ class Game(db.Model):
             "id": self.id,
             "collection_id": self.collection_id,
             "number": self.number,
-            "game": self.pgn
+            "game": self.pgn,
+            "collection_num_games": len(self.collection.games),
+            "collection_name": self.collection.name
         }

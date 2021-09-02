@@ -138,13 +138,21 @@ const Collection = () => {
                         {collection?.description}
                     </div>
                 </div>
+                <div className="collection-content__footer">
                 {collection?.owner_id === user?.id && 
-                <button
-                    className="collection-games-tab-button"
-                    onClick={() => setContext('games')}
-                >
-                    Add or Change Games in this Collection
-                </button>}
+                    <button
+                        className="collection-games-tab-button"
+                        onClick={() => setContext('games')}
+                    >
+                        Add or Change Games in this Collection
+                    </button>}
+                    <button
+                        className="collection-games__start"
+                        onClick={() => history.push(`/collections/${collection.id}/games/1`)}
+                    >
+                        Start Collection
+                    </button>
+                </div>
             </div>}
             {context === "edit" && 
             <div className="collection-content">
