@@ -159,7 +159,7 @@
 .collection-content__games-header {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     font-size: 24px;
     max-width: 650px;
 }
@@ -275,4 +275,9 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.collection-content__games-errors {
+    margin-bottom: 10px;
+    color: red;
 }

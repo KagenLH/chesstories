@@ -53,6 +53,9 @@ const Collection = () => {
             console.log(newGame);
             const newCollection = { ...collection, games: [...collection.games, newGame]};
             dispatch(setActiveCollection(newCollection));
+        } else {
+            const err = await res.json();
+            setErrors(err.errors);
         }
     };
 
@@ -79,6 +82,10 @@ const Collection = () => {
         if(res.ok) {
             const newCollection = await res.json();
             dispatch(setActiveCollection(newCollection));
+        } else {
+            const err = await res.json();
+            console.log(err.errors);
+            setErrors(err.errors);
         }
     };
 
@@ -183,6 +190,13 @@ const Collection = () => {
                     <div className="collection-content__games-header">
                         {collection?.name}
                     </div>
+                    <div className="collection-content__games-errors">
+                        {errors.map(error => (
+                            <div key={error} className="collection-content__games-error">
+                                {error.split(': ')[1]}
+                            </div>
+                        ))}
+                    </div>
                     <div className="collection-content__games-table__container">
                         <table>
                             <thead>
@@ -197,7 +211,7 @@ const Collection = () => {
                             <tbody>
                                 {collection.games.map(game => [game, parser.parse(game.game, { startRule: 'game'})])
                                                  .map(game => (
-                                <tr>
+                                <tr key={`${game[1].tags.White}${game[1].tags.Black}${game[1].tags.Event}${game[1].tags.Date.value}${game[1].tags.Result}`}>
                                     <td className="game-table-cell game-table-number">
                                         <div className="game-table-cell__number">
                                             <div className="game-table-cell__carrot" onClick={() => moveGame(game[0].id, "up")}>

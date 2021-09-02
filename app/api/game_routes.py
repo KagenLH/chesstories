@@ -64,7 +64,7 @@ def shift_game(id):
                     [game_above.number, shifted_game.number] = [shifted_game.number, game_above.number]
                     db.session.commit()
                 else:
-                    return "Game is already at the top of the list.", 400
+                    return {"errors": ["game: Game is already at the top of the list."]}, 400
             if direction == "down":
                 print(max(collection.games, key=lambda game: game.number).number)
                 if shifted_game.number != max(collection.games, key=lambda game: game.number).number:
@@ -73,9 +73,9 @@ def shift_game(id):
                     [game_below.number, shifted_game.number] = [shifted_game.number, game_below.number]
                     db.session.commit()
                 else:
-                    return "Game is already at the bottom of the list.", 400
+                    return {"errors": ["game: Game is already at the bottom of the list."]}, 400
             return collection.to_dict()
         else:
-            return "You do not own the game that you are trying to shift.", 401
+            return {"errors": ["game: You do not own the game that you are trying to shift."]}, 401
     else:
-        return "The game that you are trying to shift was not found.", 404
+        return {"errors": ["game: The game that you are trying to shift was not found."]} ,404
