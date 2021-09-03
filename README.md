@@ -29,6 +29,55 @@ You can visit ChesStories [here](https://chesstories.herokuapp.com/).
 * [API Routes](https://github.com/KagenLH/chesstories/wiki/API-Routes)
 * [Frontend Routes](https://github.com/KagenLH/chesstories/wiki/Frontend-Routes)
 
+## Navigating and Using ChesStories
+
+#### Landing and Logging in
+When you first navigate to the [website](https://chesstories.herokuapp.com/) you will be met with this splash screen
+
+![chesstories herokuapp com_ (1)](https://user-images.githubusercontent.com/5733445/132007598-79aa77bb-af62-4a2f-b670-86c9c59afa3c.png)
+
+ChesStories requires an account for all activity on the platform, so the only way to advance from here is to login or create an account. If you already have an account or would like to test with the provided demo user, you can click on the login link and interact with the authentication modal accordingly
+
+![chesstories herokuapp com_ (6)](https://user-images.githubusercontent.com/5733445/132008106-d38faf77-f2c7-4304-91ae-b0f8bdc3194b.png)
+
+#### Visiting Collections
+Once you are logged in, you will be directed to the collections page, with available curated collections laid out in cards that you can click on to visit any of the collections:
+
+![chesstories herokuapp com_ (7)](https://user-images.githubusercontent.com/5733445/132008336-30e3f15d-f32e-48aa-bf11-4b4d5ab39c50.png)
+
+Clicking on any of the cards will bring you to the page for that collection, which will provide a full description and other information about the collection such as who curated it, how many games are in the collection, and more.
+
+![chesstories herokuapp com_ (8)](https://user-images.githubusercontent.com/5733445/132008971-e81a8ca2-bed5-4d00-97f9-d8ff46a18b99.png)
+
+If you own the collection you'll also see icons for editing or deleting your collection, clicking the delete icon will delete the collection immediately and bring you back to the collection cards page while clicking on the edit icon will change the collection information pane into an edit collection form where you can change the banner image and any other information about your collection
+
+![chesstories herokuapp com_ (9)](https://user-images.githubusercontent.com/5733445/132009431-e9e7baff-37ec-464b-a714-23945693c2dd.png)
+
+#### Adding, Removing, and Reordering Games in your Collections
+If you own a collection, you will see a button at the bottom of the information pane that reads "Add or Change Games in this Collection". If you click on it you will be presented with a table that shows all games in your collection in the order of their place in the collection (the order that a user would play through them in). 
+
+![chesstories herokuapp com_ (10)](https://user-images.githubusercontent.com/5733445/132009947-bcf6b3c0-78a0-46e5-9d8c-85ea89eca845.png)
+
+Here you can add a new game to your collection, and then use the arrows to place it into the position in the collection that you would like. Adding a game to a collection only consists of uploading a PGN file and clicking the "Add New Game" button. After adding "Fischer vs Rossolimo, USA Championship 1966" to the collection above and moving it to the 3rd position in the collection my collection now looks like this:
+
+![chesstories herokuapp com_ (11)](https://user-images.githubusercontent.com/5733445/132010526-9617bf47-2ee7-426a-98ec-360597cfe282.png)
+
+You can also click on the trash icons next to any game which will remove the game from the collection, and the order of the games in the collection will adjust accordingly.
+
+#### Exploring Games in a Collection
+Once you're ready to start experiencing a collection, you can click on the "Start Collection" button on the bottom of the information pane for the collection. Doing so will bring you to a page that looks like this:
+
+![chesstories herokuapp com_ (13)](https://user-images.githubusercontent.com/5733445/132011064-e42f0fea-4cdc-4d42-9a7d-f8bd7843d80c.png)
+
+You can now start clicking on the forward arrow to play back through the moves of the game, and the back arrow to undo a move if you moved through the moves too quickly.
+
+![chesstories herokuapp com_ (14)](https://user-images.githubusercontent.com/5733445/132011457-83a0e060-e04b-4ab8-8395-29d46e3dd68c.png)
+
+Once you're done with a game and ready to move on, you can click on the next arrow and it will clear the board and take you to the next game in the collection, where you can start again and experience that game as well.
+
+![chesstories herokuapp com_ (15)](https://user-images.githubusercontent.com/5733445/132011691-879b72d6-0a7d-4abb-b820-3022f662f778.png)
+
+
 ## Running ChesStories on Your Local Machine
 Running ChesStories in development requires a Python pipenv installation for installing Flask, SQLAlchemy, and other backend dependencies, a pre-existing PostgreSQL installation, and NodeJS for the React environment. These instructions will assume that you already have all of these already installed and configured. Also assure ahead of time that no other processes are running on port 5000.
 
@@ -37,20 +86,26 @@ Navigate in your terminal to wherever you wish to install and run:
 `git clone https://github.com/KagenLH/chesstories.git`
 
 After the repository is downloaded, we're ready to install dependencies:
-`cd chesstories`
-`pipenv install`
+```bash
+cd chesstories
+pipenv install
+```
 
 If running the install didn't automatically put you into the virtual shell, go ahead and do so.
-`pipenv shell`
+```
+pipenv shell
+```
 
 Now install dependencies for the React App:
-`cd react-app`
-`npm install`
+```bash
+cd react-app
+npm install
+```
 
 After that completes, we need to setup our environment variables for development. Create a `.env`
  file in the root of the project and copy these values in:
  ```
- FLASK_APP=app
+FLASK_APP=app
 FLASK_ENV=development
 SECRET_KEY=reallysecretkey
 DATABASE_URL=postgresql://chesstories_app@localhost/chesstories_development
@@ -62,7 +117,9 @@ S3_BUCKET_KEY=<YOUR BUCKET KEY>
 S3_SECRET_ACCESS_KEY=<YOUR SECRET KEY VALUE>
 ```
 Now we need to create the development database and database user for the application. Start with opening Postgres CLI
-`psql`
+```
+psql
+```
 
 Create the Postgres user:
 `CREATE USER chesstories_app WITH PASSWORD 'password' CREATEDB;`
@@ -83,10 +140,14 @@ Now everything is configured, and you're ready to start up your development envi
 `flask run`
 
 Now from another terminal window starting from the root, change to the directory with the React server
-`cd react-app`
+```bash
+cd react-app
+```
 
 Then start the React development server:
-`npm start`
+```
+npm start
+```
 
 A new browser window with the application will open automatically, and the development environment is ready!
 
