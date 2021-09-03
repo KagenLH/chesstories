@@ -1,4 +1,11 @@
-# ChesStories
+# Table of Contents
+
+ 1. [Introduction](https://github.com/KagenLH/chesstories#introduction)
+ 2. [Technologies](https://github.com/KagenLH/chesstories#technologies)
+ 3. [Relevant Documents](https://github.com/KagenLH/chesstories#relevant-documents)
+ 4. [Running ChesStories on Your Local Machine](https://github.com/KagenLH/chesstories#running-chesstories-on-your-local-machine)
+ 5. [Technical Challenges and Implementation Details](https://github.com/KagenLH/chesstories#technical-challenges-and-implementation-details)
+ 6. [Future Plans](https://github.com/KagenLH/chesstories#future-plans)
 ## Introduction
 
 ChesStories is a platform for exploring, creating, and sharing collections of chess games that share a common theme (games of a famous player, games from a certain tournament, opening, world championship match, etc.) built on Flask with React/Redux. Each collection is collected, curated, and annotated move-by-move --- by hand -- by the person that creates the collection.  Other users can then find their collection and play through the games within with the annotations from the curator of the collection. 
