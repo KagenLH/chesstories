@@ -152,6 +152,7 @@ npm start
 A new browser window with the application will open automatically, and the development environment is ready!
 
 ## Technical Challenges and Implementation Details
+### Handling Records of Chess Games
 One of the early and most difficult challenges I faced was how to save, transfer, manipulate, and provide replay ability for chess games that are user uploadable. A long-existing tried and true solution to this problem is the PGN file format, a text file that provides meta-information about the game (who was playing, when, where, and what date) as well as the actual moves of the game itself.  PGNs are made for being readable by humans but also easily parseable by machines and easy for machines to generate. Any PGN will look about like this:
 ```[Event "USA-ch"]
 [Site "New York, NY USA"]
@@ -174,7 +175,10 @@ One of the early and most difficult challenges I faced was how to save, transfer
 Rhe8 27. Rg3 Nc6 28. Qh4 Nxe5 29. Nf4 Ng4 30. Nxe6+ Rxe6
 31. Bxf5 Qc4+ 32. Kg1 1-0
 ```
-The game meta-data at the top are called the "tags" while the actual game below is referred to as the "moves". Choosing to use PGNs for this application was then an easy decision, but now brought up the challenge of how to implement their usage. I decided to store the PGNs themselves as text strings in the database, validated and standardized into a universal format on the API server before storage in order to clean up any sloppy hand-made PGNs and keep the database files clean and organized. Cleaned up and standardized, the PGN files could now be reliably parsed on the frontend to show information about each game on the games table for the owners of collections, and in the header section of the game on the play-through applet. In order to put the moves of the game into an easily-usable and manipulable format for the play-through applet, I would parse the moves and store them into an array where each index represents a ply (a white or black move, both playing is considered a full move). Then, I could implement backwards and forwards buttons that would simply push and pop moves from that moves array onto the stack and render them on the board:
+The game meta-data at the top are called the "tags" while the actual game below is referred to as the "moves". Choosing to use PGNs for this application was then an easy decision, but now brought up the challenge of how to implement their usage. I decided to store the PGNs themselves as text strings in the database, validated and standardized into a universal format on the API server before storage in order to clean up any sloppy hand-made PGNs and keep the database files clean and organized.
+
+### Reading Through Records of Chess Games on the Frontend
+Cleaned up and standardized, the PGN files could now be reliably parsed on the frontend to show information about each game on the games table for the owners of collections, and in the header section of the game on the play-through applet. In order to put the moves of the game into an easily-usable and manipulable format for the play-through applet, I would parse the moves and store them into an array where each index represents a ply (a white or black move, both playing is considered a full move). Then, I could implement backwards and forwards buttons that would simply push and pop moves from that moves array onto the stack and render them on the board:
 ```js
 const  moveOne  = () => {
 	if(move  <  game.moves.length -  2) {
