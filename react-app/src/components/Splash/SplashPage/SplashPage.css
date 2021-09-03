@@ -11,7 +11,7 @@
     font-size: 45px;
     max-width: 1000px;
     top: 50%;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     left: 50px;
     transform: translateY(-50%);
 }
@@ -26,6 +26,7 @@
     left: 50px;
     transform: translateY(-50%);
 }
+
 .splash-logo {
     position: fixed;
 }
