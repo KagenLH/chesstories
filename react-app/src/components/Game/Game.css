@@ -11,7 +11,7 @@
 .game-outer-container {
     position: absolute;
     background-color: #494949;
-    height: 300%;
+    height: 120%;
     width: 100%;
 }
 
@@ -51,7 +51,7 @@
 
 .game-board__info {
     margin-bottom: 5px;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -67,13 +67,14 @@
 }
 
 .game-board__event {
-    font-size: 24px;
-    color: white;
+    font-size: 18px;
+    max-width: 300px;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .game-board__date {
-    color: #e6e6e7;
-    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
 }
 
 .game-board__information {
@@ -125,5 +126,26 @@
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    font-size: 30px;
+    font-size: 32px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.game-board__info-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-board__info-gamenum {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+}
+
+.game-board__info-num-and-loc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.game-board__info-location {
+    margin-top: 6px;
 }

@@ -1,7 +1,7 @@
 .navigation {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     top: 0px;
     left: 0px;
@@ -25,4 +25,11 @@
 
 .navigation-link:hover {
     color: white;
+}
+
+.logged-in-user {
+    color: white;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 20px;
 }

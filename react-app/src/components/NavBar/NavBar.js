@@ -18,6 +18,9 @@ const NavBar = () => {
 
     return (
         <div className="navigation">
+            <div className="logged-in-user">
+                {user.username}
+            </div>
             <div className="navigation-links">
                 <NavLink
                     to="/collections"

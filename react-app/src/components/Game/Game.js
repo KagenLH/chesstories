@@ -29,15 +29,15 @@ const Game = () => {
                 const data = await res.json();
                 setGameObj(data);
                 const gamePgn = parser.parse(data.game, {startRule: 'game'});
-                console.log(gamePgn);
                 setGame(gamePgn);
-                setFen("start");
             }
         };
 
         loadGame();
         const board = new Chess();
         setGameBoard(board);
+        setFen(board.fen());
+        setMove(-1);
     }, [collectionId, gameNum]);
 
     const moveOne = () => {
@@ -73,6 +73,7 @@ const Game = () => {
                 <button
                     className="game-container__next"
                     onClick={() => {
+                        gameBoard.reset();
                         history.push(`/collections/${collectionId}/games/${parseInt(gameNum) + 1}`);
                     }}
                 >
@@ -83,11 +84,23 @@ const Game = () => {
                 <div className="game-header">{gameObj?.collection_name}</div>
                     <div ref={boardEle} className="game-board">
                         <div className="game-board__information">
-                            <div className="game-board__info">
-                                White: <span className="game-board__info-text">{game?.tags.White}</span>
-                            </div>
-                            <div className="game-board__info">
-                                Black: <span className="game-board__info-text">{game?.tags.Black}</span>
+                            <div className="game-board__info-flex">
+                                <div className="game-board__info-flex-wb">
+                                    <div className="game-board__info">
+                                        White: <span className="game-board__info-text">{game?.tags.White}</span>
+                                    </div>
+                                    <div className="game-board__info">
+                                        Black: <span className="game-board__info-text">{game?.tags.Black}</span>
+                                    </div>
+                                </div>
+                                <div className="game-board__info-num-and-loc">
+                                    <div className="game-board__info-gamenum">
+                                        Game {gameObj?.number}/{gameObj?.collection_num_games}
+                                    </div>
+                                    <div className="game-board__info-location">
+                                        {game?.tags.Site}
+                                    </div>
+                                </div>
                             </div>
                             <div className="game-board__event-date">
                                 <div className="game-board__event">

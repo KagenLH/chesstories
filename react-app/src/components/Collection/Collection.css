@@ -135,6 +135,7 @@
 .collection-content__num-games {
     font-weight: 600;
     color: rgba(0, 0, 0, 0.9);
+    padding-right: 20px;
 }
 
 .collection-games-tab-button {
