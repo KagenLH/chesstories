@@ -51,6 +51,8 @@
     font-weight: 600;
     margin-top: 10px;
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
 }
 
 .signup-form__header {
@@ -58,4 +60,15 @@
     margin-top: 10px;
     font-size: 28px;
     font-weight: 900;
+}
+
+@media screen and (max-height: 800px) {
+    .signup-form__field-input {
+        height: 30px;
+    }
+    
+    .signup-form__header {
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
 }

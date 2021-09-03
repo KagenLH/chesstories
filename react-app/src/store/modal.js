@@ -65,7 +65,9 @@ export const verifyCredential = (credential) => async (dispatch) => {
         }
 
         dispatch(setPhaseLogin(data.username));
-        dispatch(hideAuthLoader());
+        setTimeout(() => {
+            dispatch(hideAuthLoader());
+        }, 500);
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {

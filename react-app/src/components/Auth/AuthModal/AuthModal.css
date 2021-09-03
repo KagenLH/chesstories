@@ -17,6 +17,8 @@
     border-radius: 10px;
 }
 
+
+
 .auth-modal__content * {
     color: #e5e5e5;
 }
@@ -63,4 +65,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+@media screen and (max-height: 700px) {
+    .auth-modal__content {
+        max-height: 600px;
+    }
 }
