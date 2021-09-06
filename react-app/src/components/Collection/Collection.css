@@ -145,11 +145,12 @@
     background-color: transparent;
     font-size: 16px;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.7);
+    color: cornflowerblue;
+    font-weight: bold;
 }
 
 .collection-games-tab-button:hover {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 50, 255, 1);
 }
 
 .collection-content__games {

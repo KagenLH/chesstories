@@ -158,12 +158,13 @@ const Collection = () => {
                     >
                         Add or Change Games in this Collection
                     </button>}
+                    {collection?.games.length > 0 && 
                     <button
                         className="collection-games__start"
                         onClick={() => history.push(`/collections/${collection.id}/games/1`)}
                     >
                         Start Collection
-                    </button>
+                    </button>}
                 </div>
             </div>}
             {context === "edit" && 

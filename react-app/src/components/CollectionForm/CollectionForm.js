@@ -102,7 +102,7 @@ const CollectionForm = ({ context }) => {
                 </div>
                 <div className="collection-form__field">
                     <label className="collection-form__label">
-                        Preview Image jpg, jpeg, or png (Optional):
+                        Preview Image jpg, jpeg, or png (Optional). This will determine the image that will appear on the card for your collecton on the collections page, not the banner image for your collection, which you can change after creation:
                     </label>
                     {!!validationErrors.find(error => error.includes("preview_image : ")) &&
                     validationErrors.filter(error => error.includes("preview_image : "))

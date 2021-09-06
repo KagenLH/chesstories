@@ -14,7 +14,9 @@ def create_game():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         if form.pgn.data:
-            max_number = Game.query.order_by(db.desc("number")).first().number
+            print(form.collection_id.data)
+            max_number = Game.query.filter(Game.collection_id == form.collection_id.data).order_by(db.desc("number")).first()
+            max_number = max_number.number if max_number is not None else 0
             new_game = Game(
                 collection_id=form.collection_id.data,
                 number=max_number+1,
