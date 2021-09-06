@@ -151,7 +151,8 @@ const collectionsReducer = (state=initialState, action) => {
         }
         case REMOVE_COLLECTION: {
             const newState = [ ...state ];
-            newState.splice(action.payload, 1);
+            const removalIndex = newState.findIndex(collection => collection.id === action.payload);
+            newState.splice(removalIndex, 1);
             return newState;
         }
         default:

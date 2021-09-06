@@ -11,6 +11,7 @@ class Collection(db.Model):
     banner_url = db.Column(db.Text)
 
     owner = db.relationship("User", backref="collections", lazy=True)
+    game = db.relationship("Game", backref="collections", lazy=True, cascade="all,delete")
 
     def to_dict(self):
         return {

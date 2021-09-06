@@ -125,9 +125,9 @@ const Collection = () => {
                         </button>}
                         {collection?.owner_id === user.id && <button
                             className="collection-content__delete"
-                            onClick={() => {
+                            onClick={async () => {
                                 history.push('/collections');
-                                dispatch(deleteCollection(collection));
+                                await dispatch(deleteCollection(collection));
                             }}
                         >
                             <i className="fas fa-trash"></i>
