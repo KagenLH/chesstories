@@ -11,7 +11,7 @@ class Game(db.Model):
     pgn = db.Column(db.Text, nullable=False)
     number = db.Column(db.Integer, nullable=False)
 
-    collection = db.relationship("Collection", backref="games", lazy=True, cascade="all,delete")
+    collection = db.relationship("Collection", backref="games", lazy=True)
 
     @staticmethod
     def parse_pgn(pgn):
