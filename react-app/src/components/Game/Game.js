@@ -69,7 +69,7 @@ const Game = () => {
                     {`<<< Previous`}
                 </button>
                 }
-                {gameObj?.number < gameObj?.collection_num_games - 1 && 
+                {gameObj?.number < gameObj?.collection_num_games  && 
                 <button
                     className="game-container__next"
                     onClick={() => {
