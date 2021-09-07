@@ -28,7 +28,7 @@ def get_collection_by_id(id):
     if collection:
         return collection.to_dict()
     else:
-        return "A collection with that ID doesn't exist."
+        return "A collection with that ID doesn't exist.", 400
 
 
 @collection_routes.route('/<int:id>/banner', methods=["PATCH"])
