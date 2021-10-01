@@ -177,9 +177,84 @@ Rb7 Qh5 39. g4 Qh3 40. g5 Qf3 41. Re1+ Kf8 42. Rxb5 Kg7 43. Rb6 Qg3 44. Rd1 Qc7
     capa_1 = Game(
         collection_id=1,
         number=1,
-        pgn=''''''
+        pgn='''[Event "Capablanca - Corzo"]
+[Site "Havana CUB"]
+[Date "1901.12.11"]
+[Round "9"]
+[White "Jose Raul Capablanca"]
+[Black "Juan Corzo"]
+[Result "1-0"]
+[BlackElo "?"]
+[ECO "A83"]
+[EventDate "1901.11.17"]
+[PlyCount "117"]
+[WhiteElo "?"]
+
+1. d4 f5 2. e4 fxe4 3. Nc3 Nf6 4. Bg5 c6 5. Bxf6 exf6 6. Nxe4 d5 7. Ng3 Qe7+ 8.
+Qe2 Qxe2+ 9. Bxe2 Bd6 10. Nf3 O-O 11. O-O Bg4 12. h3 Bxf3 13. Bxf3 Bxg3 14.
+fxg3 Nd7 15. Rfe1 Rae8 16. Kf1 f5 17. Rxe8 Rxe8 18. Re1 Rxe1+ 19. Kxe1 Nf6 20.
+Kd2 Ne4+ 21. Ke3 Nd6 22. Be2 Kf7 23. Kf4 Kf6 24. h4 g6 25. g4 h6 26. g5+ hxg5+
+27. hxg5+ Ke7 28. g4 fxg4 29. Bd3 Nf5 30. Kxg4 Nxd4 31. Bxg6 c5 32. Kh5 Ne6 33.
+Kh6 Kf8 34. Bf5 Ng7 35. Bc8 b6 36. g6 d4 37. b3 Kg8 38. a4 Kf8 39. Bg4 Ne8 40.
+Kh7 Ng7 41. Kh6 Ne8 42. Be2 Ng7 43. Bc4 Ne8 44. Kg5 Ke7 45. Kf5 Ng7+ 46. Ke5
+Nh5 47. Be2 Ng7 48. Kd5 Ne8 49. Kc6 Ng7 50. Kb7 Kd6 51. Kxa7 Kc7 52. Ka6 Ne8
+53. Bf3 Ng7 54. Bd5 Ne8 55. Bf7 Ng7 56. Kb5 Nf5 57. a5 Nd6+ 58. Ka6 bxa5 59. g7
+1-0'''
     )
 
+    capa_2 = Game(
+        collection_id=1,
+        number=2,
+        pgn='''[Event "Exhibition game"]
+[Site "Berlin GER"]
+[Date "1913.11.20"]
+[Round "2"]
+[White "Jose Raul Capablanca"]
+[Black "Richard Teichmann"]
+[Result "1-0"]
+[BlackElo "?"]
+[ECO "D63"]
+[EventDate "?"]
+[PlyCount "75"]
+[WhiteElo "?"]
+
+1. d4 d5 2. Nf3 Nf6 3. c4 e6 4. Bg5 Be7 5. Nc3 Nbd7 6. e3 O-O 7. Rc1 b6 8. cxd5
+exd5 9. Bb5 Bb7 10. O-O a6 11. Ba4 Rc8 12. Qe2 c5 13. dxc5 Nxc5 14. Rfd1 Nxa4
+15. Nxa4 b5 16. Rxc8 Qxc8 17. Nc3 Qc4 18. Nd4 Qxe2 19. Ncxe2 Rc8 20. Nf5 Kf8
+21. Nxe7 Kxe7 22. Nd4 g6 23. f3 h6 24. Bxh6 Nd7 25. h4 Nc5 26. Bf4 Ne6 27. Nxe6
+Kxe6 28. Rd2 Rh8 29. Rc2 Rc8 30. Rxc8 Bxc8 31. Kf2 d4 32. exd4 Kd5 33. Ke3 Be6
+34. Kd3 Kc6 35. a3 Bc4+ 36. Ke3 Be6 37. Bh6 Kd5 38. Bg7 1-0'''
+    )
+
+    capa_3 = Game(
+        collection_id=1,
+        number=3,
+        pgn='''[Event "New York"]
+[Site "New York, NY USA"]
+[Date "1924.04.05"]
+[Round "14"]
+[White "Jose Raul Capablanca"]
+[Black "Emanuel Lasker"]
+[Result "1-0"]
+[BlackElo "?"]
+[ECO "D10"]
+[EventDate "1924.03.16"]
+[PlyCount "99"]
+[WhiteElo "?"]
+
+1. d4 Nf6 2. c4 c6 3. Nc3 d5 4. cxd5 cxd5 5. Nf3 Nc6 6. Bf4 e6 7. e3 Be7 8. Bd3
+O-O 9. O-O Nh5 10. Be5 f5 11. Rc1 Nf6 12. Bxf6 gxf6 13. Nh4 Kh8 14. f4 Rg8 15.
+Rf3 Bd7 16. Rh3 Be8 17. a3 Rg7 18. Rg3 Rxg3 19. hxg3 Rc8 20. Kf2 Na5 21. Qf3
+Nc4 22. Qe2 Nd6 23. Rh1 Ne4+ 24. Bxe4 fxe4 25. Qg4 f5 26. Nxf5 exf5 27. Qxf5 h5
+28. g4 Rc6 29. g5 Kg8 30. Nxd5 Bf7 31. Nxe7+ Qxe7 32. g4 hxg4 33. Qh7+ Kf8 34.
+Rh6 Bg8 35. Qf5+ Kg7 36. Rxc6 bxc6 37. Kg3 Qe6 38. Kxg4 Qxf5+ 39. Kxf5 Bd5 40.
+b4 a6 41. Kg4 Bc4 42. f5 Bb3 43. Kf4 Bc2 44. Ke5 Kf7 45. a4 Kg7 46. d5 Bxa4 47.
+d6 c5 48. bxc5 Bc6 49. Ke6 a5 50. f6+ 1-0'''
+    )
+
+    db.session.add(capa_1)
+    db.session.add(capa_2)
+    db.session.add(capa_3)
     db.session.add(fischer_1)
     db.session.add(fischer_2)
     db.session.add(fischer_3)

@@ -14,7 +14,8 @@ const Game = () => {
     const [gameBoard, setGameBoard] = useState('');
     const [fen, setFen] = useState('start');
     const [move, setMove] = useState(-1);
-
+    const [annotation, setAnnotation] = useState("");
+    const [moveStack, setMoveStack] = useState([]);
     const { gameNum, collectionId } = useParams();
 
     const boardEle = useRef(null);
@@ -30,6 +31,11 @@ const Game = () => {
                 setGameObj(data);
                 const gamePgn = parser.parse(data.game, {startRule: 'game'});
                 setGame(gamePgn);
+                setMove(-1);
+                const firstAnnotation = data.annotations.find(annotation => annotation.ply_num - 1 === move)
+                if(firstAnnotation) {
+                    setAnnotation(firstAnnotation.content);
+                }
             }
         };
 
@@ -37,15 +43,24 @@ const Game = () => {
         const board = new Chess();
         setGameBoard(board);
         setFen(board.fen());
-        setMove(-1);
     }, [collectionId, gameNum]);
 
     const moveOne = () => {
         if(move < game.moves.length - 2) {
             const newMove = move + 1;
             setMove(newMove);
-            gameBoard.move(game.moves[newMove].notation.notation);
+            const moveText = game.moves[newMove].notation.notation;
+            const moveNumber = game.moves[newMove].moveNumber || `${moveStack[moveStack.length - 1].split('.')[0]}`;
+            const moveNotation = newMove % 2 === 0 ? `${moveNumber}. ${moveText}` : `${moveNumber} ...${moveText}`;
+            gameBoard.move(moveText);
+            setMoveStack(prevStack => [...prevStack, moveNotation]);
             setFen(gameBoard.fen());
+            const currentAnnotation = gameObj.annotations.find(annotation => annotation.ply_num - 1 === newMove);
+            if(currentAnnotation) {
+                setAnnotation(currentAnnotation.content);
+            } else {
+                setAnnotation('');
+            }
         }
     };
 
@@ -55,6 +70,17 @@ const Game = () => {
             setMove(newMove);
             gameBoard.undo();
             setFen(gameBoard.fen());
+            setMoveStack(prevStack => {
+                const newStack = [ ...prevStack ];
+                newStack.pop();
+                return newStack;
+            })
+            const currentAnnotation = gameObj.annotations.find(annotation => annotation.ply_num - 1 === newMove);
+            if(currentAnnotation) {
+                setAnnotation(currentAnnotation.content);
+            } else {
+                setAnnotation('');
+            }
         }
     };
 
@@ -80,6 +106,7 @@ const Game = () => {
                     {`Next >>>`}
                 </button>
                 }
+                <div className="playback-app">
                 <div className="game-applet">
                 <div className="game-header">{gameObj?.collection_name}</div>
                     <div ref={boardEle} className="game-board">
@@ -121,6 +148,24 @@ const Game = () => {
                             </button>
                         </div>
                     </div>
+                </div>
+                <div className="annotations-applet">
+                        <div className="game-history">
+                            <div className="moves-list">
+                            {moveStack.map((move, i) => (
+                                <p className={i === moveStack.length - 1 ? "moves-list-move moves-list-final" : "moves-list-move"}>{move.includes('...') ? move.split('...')[1] : move}</p>
+                            ))}
+                            </div>
+                        </div>
+                        <div className="annotation-content">
+                            <div className="annotation-current-move">
+                                {moveStack[moveStack.length - 1]}
+                            </div>
+                            <div className="annotation-current-content">
+                                {annotation}
+                            </div>
+                        </div>
+                </div>
                 </div>
             </div>
         </div>

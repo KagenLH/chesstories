@@ -29,5 +29,6 @@ class Game(db.Model):
             "number": self.number,
             "game": self.pgn,
             "collection_num_games": len(self.collection.games),
-            "collection_name": self.collection.name
+            "collection_name": self.collection.name,
+            "annotations": [annotation.to_dict() for annotation in self.annotations]
         }
