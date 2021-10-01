@@ -174,6 +174,12 @@ Rb7 Qh5 39. g4 Qh3 40. g5 Qf3 41. Re1+ Kf8 42. Rxb5 Kg7 43. Rb6 Qg3 44. Rd1 Qc7
 45. Rdd6 Qc8 46. b3 Kh7 47. Ra6 1-0'''
     )
 
+    capa_1 = Game(
+        collection_id=1,
+        number=1,
+        pgn=''''''
+    )
+
     db.session.add(fischer_1)
     db.session.add(fischer_2)
     db.session.add(fischer_3)
