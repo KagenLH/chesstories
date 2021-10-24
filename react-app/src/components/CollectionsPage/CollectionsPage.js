@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { loadCollections } from '../../store/collections';
-
 import CollectionCard from './CollectionCard';
 
 import './CollectionsPage.css';
